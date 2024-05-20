@@ -1,10 +1,11 @@
-
 # %%
 import csv
 
 def incident_count():
   list = []
-  with open('incident.csv', 'r') as csv_file:
+  # Input filename
+  input_filename = 'incident.csv'
+  with open(input_filename, 'r') as csv_file:
       csv_read=csv.reader(csv_file, delimiter=',')
       for row in csv_read:
         list.append(', '.join(row))
@@ -15,23 +16,20 @@ def incident_count():
     
   return counts
 
+
 def generate_csv_report():
     
     # assign header columns 
-    headerList = ['Hostname','Count'] 
-    
-    #filename
-    filename = "output_incident.csv"  
-    
+    headerList = ['Hostname','Count']  
     '''
       Assigning Header directly to the csv in key,value is not possible
-      as I have to open a csv again just to add Header in it
-      
-      It's possible with DictWriter and writerows
+      as I have to open a csv again just to add Header in it.
+      It's possible with DictWriter and writerows.
     '''
-    
+    # Output filename
+    output_filename = "output_incident.csv" 
     # open CSV file and assign header 
-    with open(filename, 'w', newline='') as file: 
+    with open(output_filename, 'w', newline='') as file: 
         add_header = csv.DictWriter(file, delimiter=',', fieldnames=headerList) 
         add_header.writeheader()
         
@@ -42,8 +40,10 @@ def generate_csv_report():
       csv_writer = csv.writer(outfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
       for k,v in count_in_csv.items():
         csv_writer.writerow([k] + [v])
-      
-    
+        
+  return ''      
+
+
 def main():
     incident_count()
     generate_csv_report()
@@ -51,5 +51,3 @@ def main():
 
 if __name__ == "__main__":
     main()    
-
-# %%
