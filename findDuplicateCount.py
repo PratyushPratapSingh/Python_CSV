@@ -2,6 +2,7 @@
 import csv
 
 def incident_count():
+  
   list = []
   # Input filename
   input_filename = 'incident.csv'
@@ -26,6 +27,7 @@ def generate_csv_report():
       as I have to open a csv again just to add Header in it.
       It's possible with DictWriter and writerows.
     '''
+  
     # Output filename
     output_filename = "output_incident.csv" 
     # open CSV file and assign header 
@@ -35,8 +37,8 @@ def generate_csv_report():
         
     # Save extracted data to a CSV file
     count_in_csv = incident_count()
-    
-    with open(filename, 'a+', newline='') as outfile:
+  
+    with open(output_filename, 'a+', newline='') as outfile:
       csv_writer = csv.writer(outfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
       for k,v in count_in_csv.items():
         csv_writer.writerow([k] + [v])
