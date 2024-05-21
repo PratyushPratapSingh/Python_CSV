@@ -43,7 +43,7 @@ def generate_csv_report():
       for k,v in count_in_csv.items():
         csv_writer.writerow([k] + [v])
         
-  return ''      
+    return ''      
 
 
 def main():
